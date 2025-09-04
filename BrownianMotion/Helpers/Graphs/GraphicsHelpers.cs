@@ -17,15 +17,7 @@ public static class GraphicsHelpers
             double retornoDiario = mean + sigma * z;
             
             prices[i] = prices[i - 1] * Math.Exp(retornoDiario);
-
-            // DEBUG: Adicione isso temporariamente para ver os valores
-            if (i <= 5) // Apenas os primeiros 5 valores
-            {
-                System.Diagnostics.Debug.WriteLine($"Day {i}: price = {prices[i]:F2}, return = {retornoDiario:F4}");
-            }
         }
-
-        System.Diagnostics.Debug.WriteLine($"Final range: Min = {prices.Min():F2}, Max = {prices.Max():F2}");
 
         return prices;
     }
