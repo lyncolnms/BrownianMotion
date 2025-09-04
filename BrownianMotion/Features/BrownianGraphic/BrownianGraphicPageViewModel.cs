@@ -7,10 +7,10 @@ namespace BrownianMotion.Features.BrownianGraphic;
 public partial class BrownianGraphicPageViewModel : ObservableObject
 {
     [ObservableProperty] private IDrawable _brownianMotionDrawable;
-    [ObservableProperty] private double _sigma = 20;
-    [ObservableProperty] private double _mean = 1;
-    [ObservableProperty] private double _initialPrice = 100;
-    [ObservableProperty] private int _numDays = 252;
+    [ObservableProperty] private double _sigma;
+    [ObservableProperty] private double _mean;
+    [ObservableProperty] private double _initialPrice;
+    [ObservableProperty] private int _numDays;
 
     [RelayCommand]
     private async Task GenerateBrownianMotion()
