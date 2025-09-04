@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:brownianGraphic="clr-namespace:BrownianMotion.Features.BrownianGraphic"
+    x:Class="BrownianMotion.Features.BrownianGraphic.BrownianGraphicPage"
+    x:DataType="brownianGraphic:BrownianGraphicPageViewModel">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="Brownian Motion"
+                FontAttributes="Bold"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <GraphicsView
+                HeightRequest="400"
+                WidthRequest="400"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Drawable="{Binding BrownianMotionDrawable}" />
+
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="*,*,*,*"
+                ColumnSpacing="10"
+                RowSpacing="10">
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Volatilidade:" />
+
+                <Entry
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding Sigma}" />
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Retorno Médio:" />
+
+                <Entry
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding Mean}" />
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Preço Inicial:" />
+
+                <Entry
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding InitialPrice}" />
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Dias:" />
+
+                <Entry
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{Binding NumDays}" />
+
+            </Grid>
+
+            <Button
+                Text="Generate Brownian Motion"
+                Command="{Binding GenerateBrownianMotionCommand}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
