@@ -6,22 +6,22 @@
     xmlns:brownianGraphic="clr-namespace:BrownianMotion.Features.BrownianGraphic"
     x:Class="BrownianMotion.Features.BrownianGraphic.BrownianGraphicPage"
     x:DataType="brownianGraphic:BrownianGraphicPageViewModel"
-    BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#1E1E1E}">
+    BackgroundColor="#1E1E1E">
 
     <ScrollView>
 
         <Grid
             Padding="20"
             RowSpacing="20"
-            RowDefinitions="Auto, *" >
+            RowDefinitions="Auto, *">
 
             <Label
                 Grid.Row="0"
-                Text="📈 Brownian Motion Simulator"
+                Text="Brownian Motion"
                 FontAttributes="Bold"
                 FontSize="28"
                 HorizontalOptions="Center"
-                TextColor="{AppThemeBinding Light=#2C3E50, Dark=#ECF0F1}"
+                TextColor="#ECF0F1"
                 Margin="0,0,0,20" />
 
             <Grid
@@ -31,24 +31,22 @@
 
                 <Border
                     Grid.Column="0"
-                    BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2C}"
-                    Stroke="{AppThemeBinding Light=#E1E5E9, Dark=#404040}"
+                    BackgroundColor="#2C2C2C"
+                    Stroke="#404040"
                     StrokeThickness="1"
                     StrokeShape="RoundRectangle 12">
 
-                    <Grid Padding="15">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                    <Grid
+                        Padding="15"
+                        RowDefinitions="Auto,*">
 
                         <Label
                             Grid.Row="0"
-                            Text="Simulação de Movimento Browniano"
+                            Text="Movimento Browniano"
                             FontSize="16"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
-                            TextColor="{AppThemeBinding Light=#34495E, Dark=#BDC3C7}"
+                            TextColor="#BDC3C7"
                             Margin="0,0,0,10" />
 
                         <GraphicsView
@@ -64,8 +62,8 @@
 
                 <Border
                     Grid.Column="1"
-                    BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2C}"
-                    Stroke="{AppThemeBinding Light=#E1E5E9, Dark=#404040}"
+                    BackgroundColor="#2C2C2C"
+                    Stroke="#404040"
                     StrokeThickness="1"
                     StrokeShape="RoundRectangle 12">
 
@@ -73,102 +71,91 @@
                         Padding="20" Spacing="20">
 
                         <Label
-                            Text="⚙️ Parâmetros"
+                            Text="Parâmetros"
                             FontSize="18"
                             FontAttributes="Bold"
                             HorizontalOptions="Center"
-                            TextColor="{AppThemeBinding Light=#2C3E50, Dark=#ECF0F1}" />
+                            TextColor="#ECF0F1" />
 
                         <VerticalStackLayout
                             Spacing="5">
 
                             <Label
-                                Text="Volatilidade (%)"
-                                FontSize="14"
-                                FontAttributes="Bold"
-                                TextColor="{AppThemeBinding Light=#34495E, Dark=#BDC3C7}" />
-
-                            <Entry
-                                Text="{Binding Sigma}"
-                                Placeholder="20"
-                                Keyboard="Numeric"
-                                BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#404040}"
-                                TextColor="{AppThemeBinding Light=#2C3E50, Dark=#ECF0F1}" />
-
-                            <Label
-                                Text="Variação dos preços"
-                                FontSize="12"
-                                TextColor="{AppThemeBinding Light=#7F8C8D, Dark=#95A5A6}" />
-
-                        </VerticalStackLayout>
-
-                        <VerticalStackLayout Spacing="5">
-
-                            <Label
-                                Text="Retorno Médio (%)"
-                                FontSize="14"
-                                FontAttributes="Bold"
-                                TextColor="{AppThemeBinding Light=#34495E, Dark=#BDC3C7}" />
-
-                            <Entry
-                                Text="{Binding Mean}"
-                                Placeholder="1"
-                                Keyboard="Numeric"
-                                BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#404040}"
-                                TextColor="{AppThemeBinding Light=#2C3E50, Dark=#ECF0F1}" />
-
-                            <Label
-                                Text="Tendência de crescimento"
-                                FontSize="12"
-                                TextColor="{AppThemeBinding Light=#7F8C8D, Dark=#95A5A6}" />
-
-                        </VerticalStackLayout>
-
-                        <VerticalStackLayout Spacing="5">
-
-                            <Label
                                 Text="Preço Inicial"
                                 FontSize="14"
                                 FontAttributes="Bold"
-                                TextColor="{AppThemeBinding Light=#34495E, Dark=#BDC3C7}" />
+                                TextColor="#BDC3C7" />
 
                             <Entry
                                 Text="{Binding InitialPrice}"
                                 Placeholder="100"
                                 Keyboard="Numeric"
-                                BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#404040}"
-                                TextColor="{AppThemeBinding Light=#2C3E50, Dark=#ECF0F1}" />
-
-                            <Label
-                                Text="Valor de partida"
-                                FontSize="12"
-                                TextColor="{AppThemeBinding Light=#7F8C8D, Dark=#95A5A6}" />
+                                BackgroundColor="#404040"
+                                TextColor="#ECF0F1" />
 
                         </VerticalStackLayout>
 
-                        <VerticalStackLayout Spacing="5">
+                        <VerticalStackLayout
+                            Spacing="5">
 
                             <Label
-                                Text="Período (dias)"
+                                Text="Volatilidade média(%)"
                                 FontSize="14"
                                 FontAttributes="Bold"
-                                TextColor="{AppThemeBinding Light=#34495E, Dark=#BDC3C7}" />
+                                TextColor="#BDC3C7" />
+
+                            <Entry
+                                Text="{Binding Sigma}"
+                                Placeholder="20"
+                                Keyboard="Numeric"
+                                BackgroundColor="#404040"
+                                TextColor="#ECF0F1" />
+
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Spacing="5">
+
+                            <Label
+                                Text="Retorno Médio (%)"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="#BDC3C7" />
+
+                            <Entry
+                                Text="{Binding Mean}"
+                                Placeholder="1"
+                                Keyboard="Numeric"
+                                BackgroundColor="#404040"
+                                TextColor="#ECF0F1" />
+
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Spacing="5">
+
+                            <Label
+                                Text="Tempo (dias)"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="#BDC3C7" />
 
                             <Entry
                                 Text="{Binding NumDays}"
                                 Placeholder="252"
                                 Keyboard="Numeric"
-                                BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#404040}"
-                                TextColor="{AppThemeBinding Light=#2C3E50, Dark=#ECF0F1}" />
+                                BackgroundColor="#404040"
+                                TextColor="#ECF0F1" />
 
                             <Label
                                 Text="Duração da simulação"
                                 FontSize="12"
-                                TextColor="{AppThemeBinding Light=#7F8C8D, Dark=#95A5A6}" />
+                                TextColor="#95A5A6" />
+
                         </VerticalStackLayout>
 
                         <Button
-                            Text="🎲 Gerar Nova Simulação"
+                            Text="Gerar Simulação"
                             Command="{Binding GenerateBrownianMotionCommand}"
                             BackgroundColor="#3498DB"
                             TextColor="White"
@@ -177,34 +164,14 @@
                             HeightRequest="50"
                             Margin="0,20,0,0" />
 
-                        <Border
-                            BackgroundColor="{AppThemeBinding Light=#E8F4FD, Dark=#1A2332}"
-                            Stroke="{AppThemeBinding Light=#3498DB, Dark=#2980B9}"
-                            StrokeThickness="1"
-                            StrokeShape="RoundRectangle 8"
-                            Padding="15"
-                            Margin="0,10,0,0">
-
-                            <VerticalStackLayout
-                                Spacing="5">
-                                <Label
-                                    Text="💡 Dica"
-                                    FontSize="14"
-                                    FontAttributes="Bold"
-                                    TextColor="{AppThemeBinding Light=#2980B9, Dark=#74B9FF}" />
-                                <Label
-                                    Text="• Volatilidade alta = mais variação&#10;• Retorno positivo = tendência de alta&#10;• 252 dias = 1 ano de mercado"
-                                    FontSize="12"
-                                    TextColor="{AppThemeBinding Light=#2980B9, Dark=#74B9FF}" />
-                            </VerticalStackLayout>
-
-                        </Border>
-
                     </VerticalStackLayout>
+
                 </Border>
 
             </Grid>
+
         </Grid>
+
     </ScrollView>
 
 </ContentPage>
