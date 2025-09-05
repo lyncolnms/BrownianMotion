@@ -16,7 +16,7 @@ public class BrownianMotionDrawable : IDrawable
 
         for (int i = 0; i < numberOfSimulations; i++)
         {
-            _simulations.Add(GraphicsHelpers.GenerateBrownianMotion(sigma, mean, initialPrice, numDays));
+            _simulations.Add(GraphicsHelper.GenerateBrownianMotion(sigma, mean, initialPrice, numDays));
         }
     }
 

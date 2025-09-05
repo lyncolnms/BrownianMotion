@@ -1,6 +1,6 @@
 ﻿namespace BrownianMotion.Helpers.Graphs;
 
-public static class GraphicsHelpers
+public static class GraphicsHelper
 {
     public static double[] GenerateBrownianMotion(double sigma, double mean, double initialPrice, int numDays)
     {
