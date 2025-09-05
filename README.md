@@ -1,5 +1,7 @@
 # Desafio de Programação em .NET MAUI
 
+---
+
 ## Introdução
 
 Você receberá um código em C# que implementa a geração de um movimento browniano (Brownian motion), um conceito bastante utilizado em finanças para modelar o comportamento estocástico dos preços. Sua tarefa é criar uma aplicação .NET MAUI para a plataforma Windows (android e iOS serão desconsiderados) que utilize esse código e exiba um gráfico da simulação.
