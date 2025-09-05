@@ -39,7 +39,9 @@ número de simulações), plotando mais de uma linha;
 
 - [x] Enriquecer a responsividade da aplicação;
 
-- [ ] Documentação;
+- [x] Documentação;
+
+- [ ] Testes unitários;
 
 - [x] Utilizar .Net 9.
 
