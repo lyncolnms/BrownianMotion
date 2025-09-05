@@ -15,35 +15,33 @@ Você receberá um código em C# que implementa a geração de um movimento brow
 • Utilizar GraphicsView/IDrawable do .NET MAUI ou SkiaSharp do .NET.;
 
 • Entrada de Parâmetros: Adicione controles de entrada na View para permitir que o usuário insira os seguintes parâmetros:
+ 
+- Preço inicial;
 
-• Preço inicial;
+- Volatilidade;
 
-• Volatilidade;
+- Média do retorno;
 
-• Média do retorno;
-
-• Tempo (duração do gerador de preços).
+- Tempo (duração do gerador de preços).
 
 ### Opcionais
 
-• Adicionar escala vertical e horizontal;
+- [x] Adicionar escala vertical e horizontal;
 
-• Permitir que o usuário simule múltiplos resultados (parâmetro na tela informando
+- [x] Permitir que o usuário simule múltiplos resultados (parâmetro na tela informando
 número de simulações), plotando mais de uma linha;
 
-• Enriquecer os componentes de entrada de parâmetro (exemplo, stepper, slider...); 
+- [ ] Enriquecer os componentes de entrada de parâmetro (exemplo, stepper, slider...);
 
-• Enriquecer o visual e layout da aplicação;
+- [x] Enriquecer o visual e layout da aplicação;
 
-• Permitir que o usuário personalize visualmente o gráfico, por exemplo, escolhendo cores, estilo de linha, etc.;
+- [ ] Permitir que o usuário personalize visualmente o gráfico, por exemplo, escolhendo cores, estilo de linha, etc.;
 
-• Enriquecer a responsividade da aplicação;
+- [x] Enriquecer a responsividade da aplicação;
 
-• Teste unitário;
+- [ ] Documentação;
 
-• Documentação.
-
-• Utilizar .Net 9. 
+- [x] Utilizar .Net 9.
 
 ---
 
