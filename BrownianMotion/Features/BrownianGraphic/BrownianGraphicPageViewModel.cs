@@ -7,6 +7,7 @@ namespace BrownianMotion.Features.BrownianGraphic;
 public partial class BrownianGraphicPageViewModel : ObservableObject
 {
     [ObservableProperty] private IDrawable _brownianMotionDrawable;
+    [ObservableProperty] private int _numberOfSimulations = 1;
     [ObservableProperty] private double _sigma;
     [ObservableProperty] private double _mean;
     [ObservableProperty] private double _initialPrice;
@@ -15,7 +16,7 @@ public partial class BrownianGraphicPageViewModel : ObservableObject
     [RelayCommand]
     private async Task GenerateBrownianMotion()
     {
-        BrownianMotionDrawable = new BrownianMotionDrawable(Sigma/100, Mean/100, InitialPrice, NumDays);
+        BrownianMotionDrawable = new BrownianMotionDrawable(NumberOfSimulations, Sigma/100, Mean/100, InitialPrice, NumDays);
     }
 
     [RelayCommand]
@@ -25,6 +26,6 @@ public partial class BrownianGraphicPageViewModel : ObservableObject
         Mean = 0;
         InitialPrice = 0;
         NumDays = 0;
-        BrownianMotionDrawable = new BrownianMotionDrawable(Sigma/100, Mean/100, InitialPrice, NumDays);
+        BrownianMotionDrawable = new BrownianMotionDrawable(1, Sigma/100, Mean/100, InitialPrice, NumDays);
     }
 }
