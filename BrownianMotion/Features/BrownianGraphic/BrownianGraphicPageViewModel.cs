@@ -22,10 +22,11 @@ public partial class BrownianGraphicPageViewModel : ObservableObject
     [RelayCommand]
     private async Task ResetValues()
     {
+        NumberOfSimulations = 1;
         Sigma = 0;
         Mean = 0;
         InitialPrice = 0;
         NumDays = 0;
-        BrownianMotionDrawable = new BrownianMotionDrawable(1, Sigma/100, Mean/100, InitialPrice, NumDays);
+        BrownianMotionDrawable = new BrownianMotionDrawable(NumberOfSimulations, Sigma/100, Mean/100, InitialPrice, NumDays);
     }
 }
