@@ -17,4 +17,14 @@ public partial class BrownianGraphicPageViewModel : ObservableObject
     {
         BrownianMotionDrawable = new BrownianMotionDrawable(Sigma/100, Mean/100, InitialPrice, NumDays);
     }
+
+    [RelayCommand]
+    private async Task ResetValues()
+    {
+        Sigma = 0;
+        Mean = 0;
+        InitialPrice = 0;
+        NumDays = 0;
+        BrownianMotionDrawable = new BrownianMotionDrawable(Sigma/100, Mean/100, InitialPrice, NumDays);
+    }
 }

@@ -6,69 +6,70 @@
     xmlns:brownianGraphic="clr-namespace:BrownianMotion.Features.BrownianGraphic"
     x:Class="BrownianMotion.Features.BrownianGraphic.BrownianGraphicPage"
     x:DataType="brownianGraphic:BrownianGraphicPageViewModel"
+    Shell.NavBarIsVisible="False"
     BackgroundColor="#1E1E1E">
 
-    <ScrollView>
+    <Grid
+        Padding="20"
+        RowSpacing="20"
+        RowDefinitions="Auto, *">
+
+        <Label
+            Grid.Row="0"
+            Text="Brownian Motion"
+            FontAttributes="Bold"
+            FontSize="28"
+            HorizontalOptions="Center"
+            TextColor="#ECF0F1"
+            Margin="0,0,0,20" />
 
         <Grid
-            Padding="20"
-            RowSpacing="20"
-            RowDefinitions="Auto, *">
+            Grid.Row="1"
+            ColumnDefinitions="2*,*"
+            ColumnSpacing="30">
 
-            <Label
-                Grid.Row="0"
-                Text="Brownian Motion"
-                FontAttributes="Bold"
-                FontSize="28"
-                HorizontalOptions="Center"
-                TextColor="#ECF0F1"
-                Margin="0,0,0,20" />
+            <Border
+                Grid.Column="0"
+                BackgroundColor="#2C2C2C"
+                Stroke="#404040"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12">
 
-            <Grid
-                Grid.Row="1"
-                ColumnDefinitions="2*,*"
-                ColumnSpacing="30">
+                <Grid
+                    Padding="15"
+                    RowDefinitions="Auto,*">
 
-                <Border
-                    Grid.Column="0"
-                    BackgroundColor="#2C2C2C"
-                    Stroke="#404040"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 12">
+                    <Label
+                        Grid.Row="0"
+                        Text="Movimento Browniano"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        TextColor="#BDC3C7"
+                        Margin="0,0,0,10" />
 
-                    <Grid
-                        Padding="15"
-                        RowDefinitions="Auto,*">
+                    <GraphicsView
+                        Grid.Row="1"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill"
+                        Drawable="{Binding BrownianMotionDrawable}" />
 
-                        <Label
-                            Grid.Row="0"
-                            Text="Movimento Browniano"
-                            FontSize="16"
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            TextColor="#BDC3C7"
-                            Margin="0,0,0,10" />
+                </Grid>
 
-                        <GraphicsView
-                            Grid.Row="1"
-                            HeightRequest="400"
-                            VerticalOptions="Fill"
-                            HorizontalOptions="Fill"
-                            Drawable="{Binding BrownianMotionDrawable}" />
+            </Border>
 
-                    </Grid>
+            <Border
+                Grid.Column="1"
+                BackgroundColor="#2C2C2C"
+                Stroke="#404040"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12">
 
-                </Border>
-
-                <Border
-                    Grid.Column="1"
-                    BackgroundColor="#2C2C2C"
-                    Stroke="#404040"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 12">
+                <ScrollView>
 
                     <VerticalStackLayout
-                        Padding="20" Spacing="20">
+                        Padding="20"
+                        Spacing="20">
 
                         <Label
                             Text="Parâmetros"
@@ -164,14 +165,25 @@
                             HeightRequest="50"
                             Margin="0,20,0,0" />
 
+                        <Button
+                            Margin="0,20,0,0"
+                            BackgroundColor="WhiteSmoke"
+                            BorderColor="Red"
+                            BorderWidth="2"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            HeightRequest="50"
+                            Text="Reiniciar"
+                            Command="{Binding ResetValuesCommand}"/>
+
                     </VerticalStackLayout>
 
-                </Border>
+                </ScrollView>
 
-            </Grid>
+            </Border>
 
         </Grid>
 
-    </ScrollView>
+    </Grid>
 
 </ContentPage>
