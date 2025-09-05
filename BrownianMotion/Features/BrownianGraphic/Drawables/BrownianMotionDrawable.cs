@@ -1,30 +1,28 @@
-﻿using BrownianMotion.Helpers.Graphs;
-using Font = Microsoft.Maui.Graphics.Font;
+﻿using BrownianMotion.Helpers.Colors;
+using BrownianMotion.Helpers.Graphs;
 
 namespace BrownianMotion.Features.BrownianGraphic.Drawables;
 
 public class BrownianMotionDrawable : IDrawable
 {
-    private readonly double[] _prices;
+    private readonly List<double[]> _simulations = [];
     private readonly int _numDays;
 
-    public BrownianMotionDrawable(double sigma, double mean, double initialPrice, int numDays)
+    public BrownianMotionDrawable(int numberOfSimulations, double sigma, double mean, double initialPrice, int numDays)
     {
         _numDays = numDays;
 
-        if (sigma == 0 && mean == 0 && initialPrice == 0 && numDays == 0)
+        if (numberOfSimulations <= 0 || sigma < 0 || initialPrice <= 0 || numDays <= 0) return;
+
+        for (int i = 0; i < numberOfSimulations; i++)
         {
-            _prices = null;
-        }
-        else
-        {
-            _prices = GraphicsHelpers.GenerateBrownianMotion(sigma, mean, initialPrice, numDays);
+            _simulations.Add(GraphicsHelpers.GenerateBrownianMotion(sigma, mean, initialPrice, numDays));
         }
     }
 
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
-        if (_prices is not { Length: >= 2 }) return;
+        if (_simulations is not { Count: > 0 }) return;
 
         float leftMargin = 80f;
         float rightMargin = 20f;
@@ -35,18 +33,22 @@ public class BrownianMotionDrawable : IDrawable
         float chartHeight = dirtyRect.Height - topMargin - bottomMargin;
         RectF chartArea = new(leftMargin, topMargin, chartWidth, chartHeight);
 
-        double minPrice = _prices.Min();
-        double maxPrice = _prices.Max();
+        double minPrice = _simulations.Min(simulation => simulation.Min());
+        double maxPrice = _simulations.Max(simulation => simulation.Max());
         double priceRange = maxPrice - minPrice;
 
         if (priceRange == 0) priceRange = 1;
 
-        (double niceMin, double niceMax, double step, int decimals) = CalculateScale(minPrice, maxPrice, 8);
-
         DrawBackground(canvas, chartArea);
-        DrawVerticalScale(canvas, chartArea, minPrice, maxPrice, niceMin, niceMax, step, decimals);
+        DrawVerticalScale(canvas, chartArea, minPrice, maxPrice);
         DrawHorizontalScale(canvas, chartArea, _numDays);
-        DrawChart(canvas, chartArea, minPrice, priceRange);
+
+        foreach (double[] currentSimulation in _simulations)
+        {
+            if (currentSimulation is not { Length: >= 2 }) continue;
+
+            DrawChart(canvas, chartArea, minPrice, priceRange, currentSimulation);
+        }
     }
 
     private void DrawBackground(ICanvas canvas, RectF chartArea)
@@ -59,30 +61,27 @@ public class BrownianMotionDrawable : IDrawable
         canvas.DrawRectangle(chartArea);
     }
 
-    private void DrawVerticalScale(ICanvas canvas, RectF chartArea, double dataMin, double dataMax, double niceMin,
-        double niceMax, double step, int decimals)
+    private void DrawVerticalScale(ICanvas canvas, RectF chartArea, double minPrice, double maxPrice)
     {
         canvas.FontSize = 12;
         canvas.FontColor = Colors.White;
         canvas.StrokeColor = Colors.LightGray;
         canvas.StrokeSize = 0.5f;
 
-        double dataRange = dataMax - dataMin;
-        if (dataRange == 0) dataRange = 1;
+        int numberOfTicks = 8;
+        double priceRange = maxPrice - minPrice;
+        double step = priceRange / (numberOfTicks - 1);
 
-        for (double price = niceMin; price <= niceMax + step / 2; price += step)
+        for (int i = 0; i < numberOfTicks; i++)
         {
-            float y = chartArea.Bottom - (float)((price - dataMin) / dataRange * chartArea.Height);
+            double price = minPrice + (i * step);
+            float y = chartArea.Bottom - i * chartArea.Height / (numberOfTicks - 1);
 
-            if (y >= chartArea.Top && y <= chartArea.Bottom)
-            {
-                canvas.DrawLine(chartArea.Left, y, chartArea.Right, y);
+            canvas.DrawLine(chartArea.Left, y, chartArea.Right, y);
 
-                string format = decimals > 0 ? $"F{decimals}" : "F0";
-                string priceText = price.ToString(format);
-                RectF labelRect = new(10, y - 8, chartArea.Left - 15, 16);
-                canvas.DrawString(priceText, labelRect, HorizontalAlignment.Right, VerticalAlignment.Center);
-            }
+            string priceText = price.ToString("F2");
+            RectF labelRect = new(10, y - 8, chartArea.Left - 15, 16);
+            canvas.DrawString(priceText, labelRect, HorizontalAlignment.Right, VerticalAlignment.Center);
         }
 
         canvas.FontSize = 14;
@@ -127,50 +126,23 @@ public class BrownianMotionDrawable : IDrawable
         canvas.DrawString("Tempo (dias)", xTitleRect, HorizontalAlignment.Center, VerticalAlignment.Center);
     }
 
-    private void DrawChart(ICanvas canvas, RectF chartArea, double minPrice, double priceRange)
+    private void DrawChart(ICanvas canvas, RectF chartArea, double minPrice, double priceRange,
+        double[] prices)
     {
-        canvas.StrokeColor = Colors.BlueViolet;
+        canvas.StrokeColor = ColorsHelper.GetRandomColor();
         canvas.StrokeSize = 2;
 
-        float stepX = chartArea.Width / Math.Max(1, _prices.Length - 1);
+        float stepX = chartArea.Width / Math.Max(1, prices.Length - 1);
 
-        for (int i = 1; i < _prices.Length; i++)
+        for (int i = 1; i < prices.Length; i++)
         {
             float x0 = chartArea.Left + (i - 1) * stepX;
             float x1 = chartArea.Left + i * stepX;
-            float y0 = chartArea.Bottom - (float)((_prices[i - 1] - minPrice) / priceRange * chartArea.Height);
-            float y1 = chartArea.Bottom - (float)((_prices[i] - minPrice) / priceRange * chartArea.Height);
+            float y0 = chartArea.Bottom - (float)((prices[i - 1] - minPrice) / priceRange * chartArea.Height);
+            float y1 = chartArea.Bottom - (float)((prices[i] - minPrice) / priceRange * chartArea.Height);
 
             canvas.DrawLine(x0, y0, x1, y1);
         }
-    }
-
-    private (double min, double max, double step, int decimals) CalculateScale(double dataMin, double dataMax,
-        int targetTicks)
-    {
-        double range = dataMax - dataMin;
-        if (range == 0) range = Math.Abs(dataMax) * 0.1;
-
-        double roughStep = range / (targetTicks - 1);
-
-        double magnitude = Math.Pow(10, Math.Floor(Math.Log10(Math.Abs(roughStep))));
-        double normalizedStep = roughStep / magnitude;
-
-        double niceStep = normalizedStep switch
-        {
-            <= 1 => 1,
-            <= 2 => 2,
-            <= 5 => 5,
-            _ => 10
-        };
-
-        double step = niceStep * magnitude;
-        double niceMin = Math.Floor(dataMin / step) * step;
-        double niceMax = Math.Ceiling(dataMax / step) * step;
-
-        int decimals = Math.Max(0, -(int)Math.Floor(Math.Log10(Math.Abs(step))));
-
-        return (niceMin, niceMax, step, decimals);
     }
 
     private int CalculateTimeInterval(int days)
