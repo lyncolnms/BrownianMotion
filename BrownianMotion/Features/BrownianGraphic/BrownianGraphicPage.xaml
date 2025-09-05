@@ -82,7 +82,7 @@
                             Spacing="5">
 
                             <Label
-                                Text="Número de Simulações"
+                                Text="Quantidade de Simulações"
                                 FontSize="14"
                                 FontAttributes="Bold"
                                 TextColor="#BDC3C7" />

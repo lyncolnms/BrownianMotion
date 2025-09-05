@@ -2,7 +2,11 @@
 
 ## Introdução
 
-Você receberá um código em C# que implementa a geração de um movimento browniano (Brownian motion), um conceito bastante utilizado em finanças para modelar o comportamento estocástico dos preços. Sua tarefa é criar uma aplicação .NET MAUI para a plataforma Windows (android e iOS serão desconsiderados) que utilize esse código e exiba um gráfico da simulação.
+Aplicativo Desktop Windows usando o .NET MAUI para simular e visualizar o movimento browniano geométrico, com base no código fornecido.
+
+O Aplicativo permite que o usuário insira parâmetros como preço inicial, volatilidade, média do retorno e tempo, e então gerar e exibir o gráfico do movimento browniano geométrico.
+
+Também é possível simular múltiplos resultados utilizando o campo `Quantidade de Simulações`.
 
 ### Instruções e requisitos
 
@@ -41,7 +45,7 @@ número de simulações), plotando mais de uma linha;
 
 - [x] Documentação;
 
-- [ ] Testes unitários;
+- [ ] Testes unitários (Parcial);
 
 - [x] Utilizar .Net 9.
 
