@@ -51,14 +51,13 @@ número de simulações), plotando mais de uma linha;
 
 ## Imagens da aplicação
 
-![Inicio](Medias/Captura%20de%20tela%202025-09-05%20121145.png)
+![Inicio](docs/assets/Captura%20de%20tela%202025-09-05%20121145.png)
 
 ---
 
-![Apenas 1 simulação](Medias/Captura%20de%20tela%202025-09-05%20120515.png)
-
+![Apenas 1 simulação](docs/assets/Captura%20de%20tela%202025-09-05%20120515.png)
 ---
 
-![Múltiplas simulações](Medias/Captura%20de%20tela%202025-09-05%20120545.png)
+![Múltiplas simulações](docs/assets/Captura%20de%20tela%202025-09-05%20120545.png)
 
 ---
