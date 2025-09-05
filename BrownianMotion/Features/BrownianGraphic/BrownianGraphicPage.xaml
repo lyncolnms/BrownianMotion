@@ -82,6 +82,23 @@
                             Spacing="5">
 
                             <Label
+                                Text="Número de Simulações"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="#BDC3C7" />
+
+                            <Entry
+                                Text="{Binding NumberOfSimulations}"
+                                Placeholder="100"
+                                BackgroundColor="#404040"
+                                TextColor="#ECF0F1" />
+
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Spacing="5">
+
+                            <Label
                                 Text="Preço Inicial"
                                 FontSize="14"
                                 FontAttributes="Bold"
@@ -90,7 +107,6 @@
                             <Entry
                                 Text="{Binding InitialPrice}"
                                 Placeholder="100"
-                                Keyboard="Numeric"
                                 BackgroundColor="#404040"
                                 TextColor="#ECF0F1" />
 
@@ -108,7 +124,6 @@
                             <Entry
                                 Text="{Binding Sigma}"
                                 Placeholder="20"
-                                Keyboard="Numeric"
                                 BackgroundColor="#404040"
                                 TextColor="#ECF0F1" />
 
@@ -126,7 +141,6 @@
                             <Entry
                                 Text="{Binding Mean}"
                                 Placeholder="1"
-                                Keyboard="Numeric"
                                 BackgroundColor="#404040"
                                 TextColor="#ECF0F1" />
 
@@ -144,14 +158,8 @@
                             <Entry
                                 Text="{Binding NumDays}"
                                 Placeholder="252"
-                                Keyboard="Numeric"
                                 BackgroundColor="#404040"
                                 TextColor="#ECF0F1" />
-
-                            <Label
-                                Text="Duração da simulação"
-                                FontSize="12"
-                                TextColor="#95A5A6" />
 
                         </VerticalStackLayout>
 
